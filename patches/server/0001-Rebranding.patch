@@ -1,11 +1,11 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: MiniDigger <admin@minidigger.me>
-Date: Sat, 12 Jun 2021 16:40:34 +0200
-Subject: [PATCH] Build changes
+From: Abel <abelvanhulst@gmail.com>
+Date: Fri, 15 Nov 2024 18:54:01 +0100
+Subject: [PATCH] Rebranding
 
 
 diff --git a/build.gradle.kts b/build.gradle.kts
-index 421f6b3dc8890d63d2e7aa774d0bf8f7e15890ab..2e616a1bb34aebfa3999370ec3e5d7b0d61d6cef 100644
+index 648281575eb8d45a5c06549eb3d0f517c086fe64..f4a1002abe3a9f5d164b9dc1da10053ca9cc6c35 100644
 --- a/build.gradle.kts
 +++ b/build.gradle.kts
 @@ -13,7 +13,7 @@ configurations.named(log4jPlugins.compileClasspathConfigurationName) {
@@ -13,7 +13,7 @@ index 421f6b3dc8890d63d2e7aa774d0bf8f7e15890ab..2e616a1bb34aebfa3999370ec3e5d7b0
  
  dependencies {
 -    implementation(project(":paper-api"))
-+    implementation(project(":forktest-api")) // ForkTest - update api reference
++    implementation(project(":Themis-api")) // Themis - Rebranding
      // Paper start
      implementation("org.jline:jline-terminal-jansi:3.21.0")
      implementation("net.minecrell:terminalconsoleappender:1.3.0")
@@ -22,18 +22,18 @@ index 421f6b3dc8890d63d2e7aa774d0bf8f7e15890ab..2e616a1bb34aebfa3999370ec3e5d7b0
          attributes(
              "Main-Class" to "org.bukkit.craftbukkit.Main",
 -            "Implementation-Title" to "Paper",
-+            "Implementation-Title" to "ForkTest", // ForkTest - rename
++            "Implementation-Title" to "Themis", // Themis - Rebranding
              "Implementation-Version" to implementationVersion,
              "Implementation-Vendor" to date, // Paper
 -            "Specification-Title" to "Paper",
-+            "Specification-Title" to "ForkTest", // ForkTest - rename
++            "Specification-Title" to "Themis", // Themis - Rebranding
              "Specification-Version" to project.version,
 -            "Specification-Vendor" to "Paper Team",
 -            "Brand-Id" to "papermc:paper",
 -            "Brand-Name" to "Paper",
-+            "Specification-Vendor" to "ForkTest Team", // ForkTest - rename
-+            "Brand-Id" to "forktestmc:forktest", // ForkTest - rename
-+            "Brand-Name" to "ForkTest", // ForkTest - rename
++            "Specification-Vendor" to "Abelpro678 and contributors", // Themis - Rebranding
++            "Brand-Id" to "abelkrijgtalles:themis", // Themis - Rebranding
++            "Brand-Name" to "Themis", // Themis - Rebranding
              "Build-Number" to (build ?: ""),
              "Build-Time" to Instant.now().toString(),
              "Git-Branch" to gitBranch, // Paper
@@ -47,14 +47,14 @@ index 421f6b3dc8890d63d2e7aa774d0bf8f7e15890ab..2e616a1bb34aebfa3999370ec3e5d7b0
      standardInput = System.`in`
      workingDir = rootProject.layout.projectDirectory
 diff --git a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
-index 790bad0494454ca12ee152e3de6da3da634d9b20..9d87cb3068124367cb2b8b5adad7a889ab5fd76c 100644
+index 790bad0494454ca12ee152e3de6da3da634d9b20..13ef13bf4ac97cce3df30817f972798a4b6b9f24 100644
 --- a/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
 +++ b/src/main/java/io/papermc/paper/ServerBuildInfoImpl.java
 @@ -31,6 +31,7 @@ public record ServerBuildInfoImpl(
      private static final String ATTRIBUTE_GIT_COMMIT = "Git-Commit";
  
      private static final String BRAND_PAPER_NAME = "Paper";
-+    private static final String BRAND_FORKTEST_NAME = "ForkTest"; // ForkTest - rename
++    private static final String BRAND_THEMIS_NAME = "Themis"; // Themis - Rebranding
  
      private static final String BUILD_DEV = "DEV";
  
@@ -63,7 +63,7 @@ index 790bad0494454ca12ee152e3de6da3da634d9b20..9d87cb3068124367cb2b8b5adad7a889
                  .orElse(BRAND_PAPER_ID),
              getManifestAttribute(manifest, ATTRIBUTE_BRAND_NAME)
 -                .orElse(BRAND_PAPER_NAME),
-+                .orElse(BRAND_FORKTEST_NAME), // ForkTest - rename
++                .orElse(BRAND_THEMIS_NAME), // Themis - Rebranding
              SharedConstants.getCurrentVersion().getId(),
              SharedConstants.getCurrentVersion().getName(),
              getManifestAttribute(manifest, ATTRIBUTE_BUILD_NUMBER)
@@ -72,12 +72,12 @@ index 790bad0494454ca12ee152e3de6da3da634d9b20..9d87cb3068124367cb2b8b5adad7a889
      @Override
      public boolean isBrandCompatible(final @NotNull Key brandId) {
 -        return brandId.equals(this.brandId);
-+        return brandId.equals(this.brandId) || brandId.equals(BRAND_PAPER_ID); // ForkTest - rename - forktest supports both paper and forktest plugins.
++        return brandId.equals(this.brandId) || brandId.equals(BRAND_PAPER_ID); // ForkTest - rename - Themis supports both paper and Themis plugins.
      }
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
-index 774556a62eb240da42e84db4502e2ed43495be17..21f39bd0c33ef2635249298e6a247afba8b05742 100644
+index 774556a62eb240da42e84db4502e2ed43495be17..d25a2aa12fe508b4995c6b733dd0afe7563b6aef 100644
 --- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 +++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
 @@ -11,7 +11,7 @@ public final class Versioning {
@@ -85,7 +85,7 @@ index 774556a62eb240da42e84db4502e2ed43495be17..21f39bd0c33ef2635249298e6a247afb
          String result = "Unknown-Version";
  
 -        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/io.papermc.paper/paper-api/pom.properties");
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/com.example.paperfork/forktest-api/pom.properties"); // ForkTest
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/nl.abelkrijgtalles.themis/Themis-api/pom.properties"); // Themis
          Properties properties = new Properties();
  
          if (stream != null) {
