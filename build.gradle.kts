@@ -61,7 +61,7 @@ val initSubmodules by tasks.registering {
 }
 
 paperweight {
-    serverProject = project(":forktest-server")
+    serverProject = project(":Themis-server")
 
     remapRepo = paperMavenPublicUrl
     decompileRepo = paperMavenPublicUrl
@@ -77,12 +77,12 @@ paperweight {
                 register("api") {
                     upstreamDir = paperDir.dir("Paper-API")
                     patchDir = layout.projectDirectory.dir("patches/api")
-                    outputDir = layout.projectDirectory.dir("forktest-api")
+                    outputDir = layout.projectDirectory.dir("Themis-api")
                 }
                 register("server") {
                     upstreamDir = paperDir.dir("Paper-Server")
                     patchDir = layout.projectDirectory.dir("patches/server")
-                    outputDir = layout.projectDirectory.dir("forktest-server")
+                    outputDir = layout.projectDirectory.dir("Themis-server")
                     importMcDev = true
                 }
                 register("generatedApi") {
@@ -101,17 +101,17 @@ paperweight {
 //
 
 tasks.generateDevelopmentBundle {
-    apiCoordinates = "com.example.paperfork:forktest-api"
+    apiCoordinates = "nl.abelkrijgtalles.themis:Themis-api"
     libraryRepositories = listOf(
         "https://repo.maven.apache.org/maven2/",
         paperMavenPublicUrl,
-        // "https://my.repo/", // This should be a repo hosting your API (in this example, 'com.example.paperfork:forktest-api')
+        // "https://my.repo/", // This should be a repo hosting your API (in this example, 'nl.abelkrijgtalles.themis:Themis-api')
     )
 }
 
 allprojects {
     // Publishing API:
-    // ./gradlew :ForkTest-API:publish[ToMavenLocal]
+    // ./gradlew :Themis-API:publish[ToMavenLocal]
     publishing {
         repositories {
             maven {
